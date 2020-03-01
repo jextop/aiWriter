@@ -37,7 +37,7 @@ public class BaiduUtilTest {
           "sn": "383242169911582945835"
         }
         */
-        Object ret = BaiduUtil.asr(format, b64Str, len);
+        Object ret = BaiduUtil.asr(format, b64Str, len, BaiduUtil.CN_ID);
         LogUtil.info(ret);
         Assert.assertNotNull(ret);
     }

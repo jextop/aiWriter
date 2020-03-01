@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaiduUtil {
+    public static int CN_ID = 1537;
+    public static int EN_ID = 1737;
+
     private static final String TOKEN_URL = "https://openapi.baidu.com/oauth/2.0/token";
     private static final String TTS_URL = "https://tsn.baidu.com/text2audio";
     private static final String ASR_URL = "http://vop.baidu.com/server_api";
@@ -66,7 +69,7 @@ public class BaiduUtil {
         return resp;
     }
 
-    public static JSONArray asr(final String format, final String b64Data, final long len) {
+    public static JSONArray asr(final String format, final String b64Data, final long len, final int lang) {
         Map<String, String> headers = new HashMap<String, String>() {{
             put("Content-Type", "application/json");
         }};
@@ -74,7 +77,7 @@ public class BaiduUtil {
         Map<String, Object> params = new HashMap<String, Object>() {{
             put("format", format); // 音频格式：pcm/wav/amr/m4a，推荐pcm
             put("rate", 16000); // 音频采样频率，固定值16000
-            put("dev_pid", 1537); // 语音模型，默认1537普通话，1737英语
+            put("dev_pid", lang); // 语音模型，默认1537普通话，1737英语
             put("channel", 1); // 声道数量，仅支持单声道1
             put("cuid", "starter_api"); // 用户唯一标识，用来计算UV值，长度为60字符，常用用户MAC地址或IMEI码
             put("token", token()); // 调用鉴权认证接口获取到的access_token
