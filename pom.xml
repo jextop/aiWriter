@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hello</groupId>
-    <artifactId>walle</artifactId>
+    <groupId>com.jext</groupId>
+    <artifactId>writer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Walle</name>
+    <name>Writer</name>
     <url>https://github.com/jextop/</url>
 
     <properties>
@@ -73,7 +73,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.walle.App</mainClass>
+                                    <mainClass>com.writer.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
