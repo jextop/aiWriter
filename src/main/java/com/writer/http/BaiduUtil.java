@@ -1,11 +1,9 @@
-package com.writer.util;
+package com.writer.http;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.writer.http.HttpUtil;
-import com.writer.http.RespData;
-import com.writer.http.RespJsonObj;
-import com.writer.http.UrlUtil;
+import com.writer.util.LogUtil;
+import com.writer.util.StrUtil;
 
 import java.util.Date;
 import java.util.HashMap;

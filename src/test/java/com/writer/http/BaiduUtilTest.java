@@ -1,6 +1,7 @@
-package com.writer.util;
+package com.writer.http;
 
-import com.writer.http.RespData;
+import com.writer.util.B64Util;
+import com.writer.util.LogUtil;
 import org.junit.Assert;
 import org.junit.Test;
 

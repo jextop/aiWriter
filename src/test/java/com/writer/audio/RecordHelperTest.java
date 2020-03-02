@@ -20,7 +20,7 @@ public class RecordHelperTest {
 
             public void stopped(long seconds) {
                 System.out.printf("recorder stopped: %d\n", seconds);
-                synchronized (Player.class) {
+                synchronized (RecordHelperTest.class) {
                     isRecording = false;
                 }
             }
@@ -51,7 +51,7 @@ public class RecordHelperTest {
 
             public void stopped(long seconds) {
                 System.out.printf("player stopped: %d\n", seconds);
-                synchronized (Player.class) {
+                synchronized (RecordHelperTest.class) {
                     isPlaying = false;
                 }
             }
