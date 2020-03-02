@@ -84,8 +84,8 @@ public class WordFrame {
 
     public static JFrame showFrame() {
         // create frame
-        final JFrame frame = new JFrame("Writer - AI语音转换文字");
-        frame.setSize(1600, 900);
+        final JFrame frame = new JFrame("Writer - 语音转文字");
+        frame.setSize(1080, 720);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(true);
