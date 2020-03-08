@@ -3,6 +3,7 @@ package com.writer;
 import com.writer.audio.RecordHelper;
 import com.writer.audio.TimeListener;
 import com.writer.audio.WordUtil;
+import com.writer.util.FontUtil;
 import com.writer.util.StrUtil;
 
 import javax.swing.*;
@@ -32,7 +33,7 @@ public class WordFrame {
         textArea.setWrapStyleWord(true);
         textArea.setAutoscrolls(true);
 
-        Font font=new Font("微软雅黑",Font.PLAIN,18);
+        Font font = new Font("微软雅黑", Font.PLAIN, 18);
         textArea.setFont(font);
 
         recordBtn.addActionListener(new ActionListener() {
@@ -95,17 +96,23 @@ public class WordFrame {
         topPanel.setLayout(new BorderLayout());
         topPanel.add(Box.createVerticalStrut(50));
 
-        // buttons
+        // configs
         Box configBox = Box.createHorizontalBox();
         addConfig(configBox);
 
         configBox.add(Box.createHorizontalStrut(10));
         topPanel.add(configBox, BorderLayout.WEST);
 
+        // buttons
         Box recordBox = Box.createVerticalBox();
         recordBox.add(recordBtn);
         recordBox.add(recordLbl);
         topPanel.add(recordBox, BorderLayout.CENTER);
+
+        // control behaviors
+        Box controlBox = Box.createHorizontalBox();
+        addButtons(controlBox);
+        topPanel.add(controlBox, BorderLayout.EAST);
 
         // center panel
         JPanel centerPanel = new JPanel();
@@ -186,6 +193,35 @@ public class WordFrame {
                     synchronized (WordFrame.class) {
                         msDuration = Integer.valueOf(itemStr) * 1000;
                     }
+                }
+            }
+        });
+    }
+
+    private static void addButtons(Box controlBox) {
+        controlBox.add(new JLabel("请选择字体: "));
+        final JComboBox fontComboBox = new JComboBox();
+        controlBox.add(fontComboBox, BorderLayout.EAST);
+
+        // font
+        Font font = textArea.getFont();
+        fontComboBox.addItem(font.getName());
+
+        String[] fontArr = FontUtil.getFonts();
+        for (String fontStr : fontArr) {
+            fontComboBox.addItem(fontStr);
+        }
+
+        fontComboBox.setSelectedItem(font.getName());
+        fontComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String fontStr = (String) fontComboBox.getSelectedItem();
+                System.out.printf("Font selected: %s\n", fontStr);
+                synchronized (WordFrame.class) {
+                    Font font = textArea.getFont();
+                    font = new Font(fontStr, font.getStyle(), font.getSize());
+                    textArea.setFont(font);
                 }
             }
         });
