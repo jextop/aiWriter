@@ -12,11 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WordFrame {
+    private static final int SIZE_MAX = 20;
+    private static final int SIZE_MIN = 10;
+
     private static final String RECORD = "    请讲话";
     private static final String PLAY = "      --------";
     private static boolean isSpeaking = false;
     private static long msDuration = 5000;
-    private static boolean newLine = false;
+    private static boolean newLine = true;
     private static String lang = "普通话";
 
     private static JButton recordBtn;
@@ -199,14 +202,14 @@ public class WordFrame {
     }
 
     private static void addButtons(Box controlBox) {
-        controlBox.add(new JLabel("请选择字体: "));
+        // font
+        controlBox.add(new JLabel("请选择: "));
+
         final JComboBox fontComboBox = new JComboBox();
         controlBox.add(fontComboBox, BorderLayout.EAST);
 
-        // font
         Font font = textArea.getFont();
         fontComboBox.addItem(font.getName());
-
         String[] fontArr = FontUtil.getFonts();
         for (String fontStr : fontArr) {
             fontComboBox.addItem(fontStr);
@@ -221,6 +224,32 @@ public class WordFrame {
                 synchronized (WordFrame.class) {
                     Font font = textArea.getFont();
                     font = new Font(fontStr, font.getStyle(), font.getSize());
+                    textArea.setFont(font);
+                }
+            }
+        });
+
+        // size
+        controlBox.add(Box.createHorizontalStrut(10), BorderLayout.EAST);
+
+        final JComboBox sizeComboBox = new JComboBox();
+        controlBox.add(sizeComboBox, BorderLayout.EAST);
+
+        for (int i = SIZE_MAX; i >= SIZE_MIN; i--) {
+            sizeComboBox.addItem(String.valueOf(i));
+        }
+
+        String defaultSize = String.valueOf(font.getSize());
+        sizeComboBox.setSelectedItem(defaultSize);
+
+        sizeComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String sizeStr = (String) sizeComboBox.getSelectedItem();
+                System.out.printf("Font size selected: %s\n", sizeStr);
+                synchronized (WordFrame.class) {
+                    Font font = textArea.getFont();
+                    font = new Font(font.getName(), font.getStyle(), Integer.valueOf(sizeStr));
                     textArea.setFont(font);
                 }
             }
