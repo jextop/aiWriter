@@ -11,12 +11,15 @@ import java.util.Map;
 public class WordUtil {
     public static final String AI_BAIDU = "百度AI";
 
+    public static final String LANG_CN = "普通话";
+    public static final String LANG_EN = "English";
+
     static Map<String, Integer> langMap;
 
     static {
         langMap = new HashMap<String, Integer>() {{
-            put("普通话", BaiduUtil.CN_ID);
-            put("English", BaiduUtil.EN_ID);
+            put(LANG_CN, BaiduUtil.CN_ID);
+            put(LANG_EN, BaiduUtil.EN_ID);
         }};
     }
 

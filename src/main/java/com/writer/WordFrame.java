@@ -16,7 +16,7 @@ public class WordFrame {
     private static final int SIZE_MIN = 10;
 
     private static String service = WordUtil.AI_BAIDU;
-    private static String lang = "普通话";
+    private static String lang = WordUtil.LANG_CN;
     private static long msDuration = 5000;
     private static boolean newLine = true;
 
@@ -164,7 +164,7 @@ public class WordFrame {
         configBox.add(lanComboBox);
 
         lanComboBox.addItem(lang);
-        lanComboBox.addItem("English");
+        lanComboBox.addItem(WordUtil.LANG_EN);
 
         lanComboBox.setSelectedItem(lang);
         lanComboBox.addActionListener(new ActionListener() {
