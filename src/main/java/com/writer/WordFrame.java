@@ -15,12 +15,13 @@ public class WordFrame {
     private static final int SIZE_MAX = 20;
     private static final int SIZE_MIN = 10;
 
+    private static String lang = "普通话";
+    private static long msDuration = 5000;
+    private static boolean newLine = true;
+
     private static final String RECORD = "    请讲话";
     private static final String PLAY = "      --------";
     private static boolean isSpeaking = false;
-    private static long msDuration = 5000;
-    private static boolean newLine = true;
-    private static String lang = "普通话";
 
     private static JButton recordBtn;
     private static JLabel recordLbl;
@@ -137,32 +138,11 @@ public class WordFrame {
     private static void addConfig(Box configBox) {
         configBox.add(Box.createHorizontalStrut(5));
 
-        configBox.add(new JLabel("请选择语言: "));
+        // language
+        configBox.add(new JLabel("语言: "));
         final JComboBox lanComboBox = new JComboBox();
         configBox.add(lanComboBox);
 
-        configBox.add(Box.createHorizontalStrut(10));
-        configBox.add(new JLabel("请选择录音时长(秒): "));
-        final JComboBox msComboBox = new JComboBox();
-        configBox.add(msComboBox);
-
-        configBox.add(Box.createHorizontalStrut(10));
-        final JCheckBox lineChkBox = new JCheckBox("增加新行");
-        configBox.add(lineChkBox);
-
-        // new line
-        lineChkBox.setSelected(newLine);
-        lineChkBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.printf("New line selected: %s\n", lineChkBox.isSelected());
-                synchronized (WordFrame.class) {
-                    newLine = lineChkBox.isSelected();
-                }
-            }
-        });
-
-        // language
         lanComboBox.addItem("普通话");
         lanComboBox.addItem("English");
 
@@ -179,6 +159,11 @@ public class WordFrame {
         });
 
         // duration
+        configBox.add(Box.createHorizontalStrut(10));
+        configBox.add(new JLabel("录音时长(秒): "));
+        final JComboBox msComboBox = new JComboBox();
+        configBox.add(msComboBox);
+
         msComboBox.addItem("3");
         msComboBox.addItem("5");
         msComboBox.addItem("10");
@@ -196,6 +181,22 @@ public class WordFrame {
                     synchronized (WordFrame.class) {
                         msDuration = Integer.valueOf(itemStr) * 1000;
                     }
+                }
+            }
+        });
+
+        // new line
+        configBox.add(Box.createHorizontalStrut(10));
+        final JCheckBox lineChkBox = new JCheckBox("增加新行");
+        configBox.add(lineChkBox);
+
+        lineChkBox.setSelected(newLine);
+        lineChkBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.printf("New line selected: %s\n", lineChkBox.isSelected());
+                synchronized (WordFrame.class) {
+                    newLine = lineChkBox.isSelected();
                 }
             }
         });
@@ -229,7 +230,7 @@ public class WordFrame {
             }
         });
 
-        // size
+        // font size
         controlBox.add(Box.createHorizontalStrut(10), BorderLayout.EAST);
 
         final JComboBox sizeComboBox = new JComboBox();
