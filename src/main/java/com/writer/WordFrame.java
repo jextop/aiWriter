@@ -15,6 +15,7 @@ public class WordFrame {
     private static final int SIZE_MAX = 20;
     private static final int SIZE_MIN = 10;
 
+    private static String service = WordUtil.AI_BAIDU;
     private static String lang = "普通话";
     private static long msDuration = 5000;
     private static boolean newLine = true;
@@ -68,7 +69,7 @@ public class WordFrame {
             @Override
             public void stopped(long seconds) {
                 recordLbl.setText(PLAY);
-                String text = WordUtil.getWord(lang);
+                String text = WordUtil.getWord(service, lang);
                 if (!StrUtil.isEmpty(text)) {
                     textArea.append(text);
                     if (newLine) {
@@ -138,12 +139,31 @@ public class WordFrame {
     private static void addConfig(Box configBox) {
         configBox.add(Box.createHorizontalStrut(5));
 
+        // 云服务
+        configBox.add(new JLabel("请选择: "));
+        final JComboBox srvComboBox = new JComboBox();
+        configBox.add(srvComboBox);
+
+        srvComboBox.addItem(service);
+        srvComboBox.setSelectedItem(service);
+
+        srvComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String srvStr = (String) srvComboBox.getSelectedItem();
+                System.out.printf("Service selected: %s\n", srvStr);
+                synchronized (WordFrame.class) {
+                    service = srvStr;
+                }
+            }
+        });
+
         // language
         configBox.add(new JLabel("语言: "));
         final JComboBox lanComboBox = new JComboBox();
         configBox.add(lanComboBox);
 
-        lanComboBox.addItem("普通话");
+        lanComboBox.addItem(lang);
         lanComboBox.addItem("English");
 
         lanComboBox.setSelectedItem(lang);
