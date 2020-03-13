@@ -8,7 +8,7 @@
     <artifactId>writer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Writer</name>
+    <name>aiWriter</name>
     <url>https://github.com/jextop/</url>
 
     <properties>
