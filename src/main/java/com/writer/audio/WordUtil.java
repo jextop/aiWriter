@@ -1,7 +1,7 @@
 package com.writer.audio;
 
 import com.alibaba.fastjson.JSONArray;
-import com.writer.http.BaiduUtil;
+import com.writer.ai.BaiduUtil;
 import com.writer.util.B64Util;
 
 import java.io.ByteArrayOutputStream;

@@ -1,7 +1,11 @@
-package com.writer.http;
+package com.writer.ai;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.writer.http.HttpUtil;
+import com.writer.http.RespData;
+import com.writer.http.RespJsonObj;
+import com.writer.http.UrlUtil;
 import com.writer.util.LogUtil;
 import com.writer.util.StrUtil;
 
