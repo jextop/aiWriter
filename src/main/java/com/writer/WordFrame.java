@@ -90,7 +90,7 @@ public class WordFrame {
 
     public static JFrame showFrame() {
         // create frame
-        final JFrame frame = new JFrame("aiWriter - 语音录音笔");
+        final JFrame frame = new JFrame("aiWriter - 智能录音笔");
         frame.setSize(1080, 720);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
